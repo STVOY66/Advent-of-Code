@@ -8,14 +8,9 @@ int part2(std::ifstream*);
 
 int main(int argc, char *argv[]) {
     std::ifstream input("./input-1.txt");
-    int ans;
 
-    if(pINT(*argv[1]) - 1)
-        ans = part1(&input);
-    else
-        ans = part2(&input);
-    
-    std::cout << "Answer to part " << argv[1] << "is: " << ans << "\n";
+    std::cout << "Answer to part 1 is: " << part1(&input) << "\n";
+    std::cout << "Answer to part 2 is: " << part1(&input) << "\n";
 
     return 0;
 }
@@ -36,4 +31,8 @@ int part1(std::ifstream *input) {
 
     return sum;
 
+}
+
+int part2(std::ifstream *input) {
+    return -1;
 }
