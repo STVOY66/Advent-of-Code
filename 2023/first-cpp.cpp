@@ -5,6 +5,8 @@
 
 int part1(std::ifstream*);
 int part2(std::ifstream*);
+void findFLInt(std::string, int*);
+void findFLStr(std::string, int*);
 
 int main(int argc, char *argv[]) {
     std::ifstream input("./input-1.txt");
@@ -17,16 +19,13 @@ int main(int argc, char *argv[]) {
 
 int part1(std::ifstream *input) {
     std::string ins;
-    uint8_t a, b, inlength;
+    int out[2];
     int sum = 0;
     
     while(*input >> ins) {
-        inlength = ins.length(); 
+        findFLInt(ins, out);
 
-        for(a = 0; !isdigit(ins[a]) && a < inlength; a++);
-        for(b = inlength - 1; !isdigit(ins[b]) && b >= 0; b--);
-
-        sum += pINT(ins[a])*10 + pINT(ins[b]);
+        sum += pINT(ins[out[0]])*10 + pINT(ins[out[1]]);
     }
 
     return sum;
@@ -35,4 +34,15 @@ int part1(std::ifstream *input) {
 
 int part2(std::ifstream *input) {
     return -1;
+}
+
+void findFLInt(std::string input, int* out) {
+    int a, b, slen;
+    slen = input.length();
+
+    for(a = 0; !isdigit(input[a]) && a < slen; a++);
+    for(b = slen - 1; !isdigit(input[b]) && b >= 0; b--);
+
+    out[0] = a;
+    out[1] = b;
 }
