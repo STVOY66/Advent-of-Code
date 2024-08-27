@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     std::ifstream input("./input-1.txt");
 
     std::cout << "Answer to part 1 is: " << part1(&input) << "\n";
-    std::cout << "Answer to part 2 is: " << part1(&input) << "\n";
+    std::cout << "Answer to part 2 is: " << part2(&input) << "\n";
 
     return 0;
 }
