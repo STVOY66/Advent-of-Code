@@ -11,14 +11,16 @@ int findFLStr(std::string, int*);
 int parseInt(const char*);
 
 int main(int argc, char *argv[]) {
-    std::ifstream input("./input-1.txt");
+    std::ifstream inputFile("./input-1.txt");
+    int p1Ans = part1(&inputFile);
+    int p2Ans = part2(&inputFile);
 
     // for debugging: grabs nth line from input for use in functions
     // std::string ins;
     // for(int n = atoi(argv[1]); n > 0; n--) input >> ins;
 
-    // std::cout << "Part1 answer: " << part1(&input) << "\n";
-    // std::cout << "Part2 answer: " << part2(&input) << "\n";
+    std::cout << "Answer to part 1 is: " << p1Ans << "\n";
+    std::cout << "Answer to part 2 is: " << p2Ans << "\n";
 
     return 0;
 }
@@ -53,9 +55,11 @@ int part2(std::ifstream *input) {
         if(outi[1] > outs[2]) FL[1] = ins[outi[1]] - '0';
         else if(outs[2] > outi[1] && outs[3] != -1) FL[1] = outs[3];
         else FL[1] = -1;
+
+        sum += (FL[0]*10) + FL[1];
     }
 
-    return 0;
+    return sum;
 }
 
 int parseInt(const char* input) {
@@ -74,8 +78,6 @@ int findFLInt(std::string input, int* out) {
     for(a = 0; !isdigit(input[a]) && a < slen; a++);
     for(b = slen - 1; !isdigit(input[b]) && b >= 0; b--);
 
-    if((out[0] + out[1]) != 0) return -1;
-
     out[0] = a;
     out[1] = b;
 
@@ -88,12 +90,6 @@ int findFLStr(std::string input, int* out) {
 
     for(a = 0; parseInt(&input.c_str()[a]) == -1 && a < slen; a++);
     for(b = slen; parseInt(&input.c_str()[b]) == -1 && b >= 0; b--);
-
-    int arrCheck = 0;
-    for(int i = 0; i < 4; i++)
-        arrCheck += out[i];
-
-    if(arrCheck != 0) return -1;
 
     out[0] = a; out[1] = parseInt(&input.c_str()[a]);
     out[2] = b; out[3] = parseInt(&input.c_str()[b]);
